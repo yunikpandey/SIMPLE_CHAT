@@ -4,14 +4,17 @@ from django.shortcuts import render
 from chat_app.models import Message
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.utils import timezone
 
 @login_required
 def chat_list(request):
-    chats= Message.objects.all()
+    chats= Message.objects.all().order_by('timestamp')
     return render(
         request,
         "chat_list.html",
-        {"chats":chats}
+        {"chats":chats,
+        "now": timezone.now(),          
+        "TIME_ZONE": timezone.get_current_timezone_name()}
     )
 
 
