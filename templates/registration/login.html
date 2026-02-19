@@ -11,16 +11,19 @@
 <form action="" method="post">
     {% csrf_token %}
 
-    <label for="username" class="form-label">Username </label>
-    <input type="text" name="username" class="form-control" id="username" 
-        value="{{ form.username.value|default_if_none:'' }}"
-        required/>
+    <div class="input-area p-3 border-top bg-white">
 
-    <label for="password" class="form-label">Password</label>
-    <input type="password" name="password" class="form-control" id="password"
-        required/>
+        <label for="username" class="form-label fw-bold">Username </label>
+        <input type="text" name="username" class="form-control" id="username" 
+            value="{{ form.username.value|default_if_none:'' }}"
+            required/>
 
-    <button type="submit" class="btn btn-primary mt-2 ">Login</button>
+        <label for="password" class="form-label fw-bold">Password</label>
+        <input type="password" name="password" class="form-control" id="password"
+            required/>
+
+        <button type="submit" class="btn btn-primary mt-2 ">Login</button>
+    </div>
 </form>
 
 
