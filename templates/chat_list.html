@@ -8,7 +8,7 @@
   <!-- This spacer pushes all real messages to the bottom -->
   <div style="flex: 1 1 auto; min-height: 0;"></div>
 
-
+    <!-- models=>sender=>auth.User has feature username where it takes name of login user-->
   {% for message in chats %}
     <div class="message-wrapper {% if message.sender == user %}sent{% else %}received{% endif %}">
 
@@ -19,18 +19,21 @@
 
         <div class="message-bubble">
 
+        <!-- Optional: show username only for received messages -->
             {% if message.sender != user %}
             <div class="sender-name">
                 {{ message.sender.username }}
             </div>
             {% endif %}
 
+        <!-- breaks line in next place  -->
             <div class="message-content">
                 {{ message.content|linebreaksbr }}
             </div>
 
+        <!-- H means hour and i means minute g means no leading zero on the hour (e.g. h=> 2:34 PM instead of 02:34 PM -->
             <div class="message-time">
-                {{ message.timestamp|date:"H:i" }}
+                {{ message.timestamp|date:"g:i A" }}
             </div>
 
         </div>
